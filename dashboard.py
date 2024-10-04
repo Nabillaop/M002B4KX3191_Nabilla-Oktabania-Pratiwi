@@ -36,8 +36,7 @@ if option == "Data Summary":
     st.pyplot(fig)
 
     st.write("""
-    Insight: min cnt (total pengguna sepeda) sebanyak 22, dan maks cnt sebanyak 8714, dengan mean 4504.348837. Dapat dilihat bahwa faktor dari cuaca seperti temp dan atemp memiliki korelasi yang cukup kuat dengan cnt (total penggunaan sepeda), sedangkan faktor hum dan windspeed memiliki korelasi yang lemah dengan cnt.
-    Dari distribusi data, dapat dilihat bahwa beberapa variabel, seperti suhu (temp) dan kelembaban (hum), memiliki distribusi yang cukup normal. 
+    Insight: Dari distribusi data, dapat dilihat bahwa beberapa variabel, seperti suhu (temp) dan kelembaban (hum), memiliki distribusi yang cukup normal. 
     Sedangkan untuk jumlah penggunaan sepeda (cnt), terlihat ada perbedaan distribusi yang menggambarkan variasi pemakaian selama periode tertentu.
     """)
 
@@ -55,7 +54,7 @@ elif option == "Working Day vs Holiday":
     st.pyplot(fig)
 
     st.write("""
-    Insight: Penggunaan sepeda lebih tinggi pada hari kerja dibandingkan akhir pekan.
+    Insight: Penggunaan sepeda lebih tinggi pada hari kerja dibandingkan akhir pekan, yang menunjukkan bahwa sepeda lebih sering digunakan sebagai sarana transportasi untuk bekerja atau sekolah daripada untuk kegiatan rekreasi.
     """)
 
 # Analysis: Cuaca dan Penggunaan Sepeda
@@ -101,7 +100,8 @@ elif option == "Cuaca dan Penggunaan Sepeda":
     st.pyplot(fig)
 
     st.write("""
-    Insight: Semakin tinggi kelembaban, jumlah penggunaan sepeda cenderung menurun. 
+    Insight: Semakin tinggi kelembaban, jumlah penggunaan sepeda cenderung menurun. Hal ini mungkin disebabkan karena tingkat kelembaban tinggi membuat kondisi bersepeda menjadi kurang nyaman.
+    """)
 
 # Analysis: Musim dan Penggunaan Sepeda
 elif option == "Musim dan Penggunaan Sepeda":
@@ -139,7 +139,7 @@ elif option == "Tren Penggunaan Sepeda dari Waktu ke Waktu":
     st.pyplot(fig)
 
     st.write("""
-    Insight: Tren penggunaan sepeda meningkat dari bulan Januari hingga Juli 2011, kemudian terjadi penurunan pada bulan Oktober 2011 hingga Januari 2012, namun meningkat cukup signifikan pada Januari hingga April 2012, dan cukup konstan pada April hingga Oktober 2012, lalu terjadi penurunan di awal tahun 2013.
+    Insight: Tren penggunaan sepeda menunjukkan peningkatan selama musim panas dan penurunan selama musim dingin. Tren ini menunjukkan bahwa pengguna lebih aktif menggunakan sepeda saat cuaca mendukung.
     """)
 
 # Add conclusions
