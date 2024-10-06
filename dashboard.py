@@ -141,11 +141,55 @@ elif option == "Tren Penggunaan Sepeda dari Waktu ke Waktu":
     st.write("""
     Insight: Tren penggunaan sepeda menunjukkan peningkatan selama musim panas dan penurunan selama musim dingin. Tren ini menunjukkan bahwa pengguna lebih aktif menggunakan sepeda saat cuaca mendukung.
     """)
+# RFM Analysis
+elif option == "RFM Analysis":
+    st.subheader("RFM Analysis")
 
-# Add conclusions
+    # Menghitung recency
+    data_terbaru = data_hari['dteday'].max()  # Mengambil data terbaru (terbesar) dari kolom dteday
+    data_hari['Recency'] = (data_terbaru - data_hari['dteday']).dt.days  # Menghitung selisih antara tanggal terbaru dan setiap tanggal dalam dteday
+
+    # Menghitung frequency
+    frekuensi = data_hari.groupby('instant').size().reset_index(name='Frequency')  # Menghitung jumlah peminjaman sepeda per hari
+
+    # Menghitung total peminjaman (monetary)
+    monetary = data_hari.groupby('instant')['cnt'].sum().reset_index(name='Monetary')
+
+    # Menggabungkan recency, frequency, dan monetary
+    rfm = pd.merge(frekuensi, monetary, on='instant')
+    rfm = pd.merge(rfm, data_hari[['instant', 'Recency']].drop_duplicates(), on='instant')
+
+    # Menampilkan RFM
+    st.write(rfm.head())
+
+    # Memvisualisasikan RFM
+    fig, ax = plt.subplots(nrows=1, ncols=3, figsize=(30, 6))  # membuat subplot
+
+    # Plot Recency
+    sns.barplot(y="Recency", x="instant", data=rfm.sort_values(by="Recency", ascending=True).head(5), ax=ax[0])
+    ax[0].set_title("By Recency (days)", loc="center", fontsize=18)
+    ax[0].tick_params(axis='x', labelsize=15)
+
+   # Plot Frequency
+    sns.barplot(y="Frequency", x="instant", data=rfm.sort_values(by="Frequency", ascending=False).head(5), ax=ax[1])
+    ax[1].set_title("By Frequency", loc="center", fontsize=18)
+    ax[1].tick_params(axis='x', labelsize=15)
+
+    # Plot Monetary
+    sns.barplot(y="Monetary", x="instant", data=rfm.sort_values(by="Monetary", ascending=False).head(5), ax=ax[2])
+    ax[2].set_title("By Monetary", loc="center", fontsize=18)
+    ax[2].tick_params(axis='x', labelsize=15)
+
+    # Atur suptitle
+    plt.suptitle("Pengguna Terbaik Berdasarkan RFM Parameters (instant)", fontsize=20)
+    st.pyplot(fig)
+
+# Kesimpulan
 st.markdown("""
 ## Kesimpulan:
 1. **Penggunaan Sepeda pada Hari Kerja dan Akhir Pekan**: Penggunaan sepeda lebih tinggi pada hari kerja dibandingkan akhir pekan.
 2. **Pengaruh Cuaca**: Cuaca cerah dan suhu yang lebih nyaman mendorong lebih banyak penggunaan sepeda. Cuaca buruk, kelembaban tinggi, dan kecepatan angin tinggi cenderung mengurangi penggunaan.
 3. **Tren Penggunaan dari Waktu ke Waktu**: Penggunaan sepeda bervariasi sepanjang waktu, meningkat pada bulan-bulan musim panas dan menurun selama musim dingin.
+4. **RFM Analysis**: Dari analisis RFM, kita dapat mengidentifikasi pengguna yang paling sering menggunakan sepeda, yang paling baru menggunakan sepeda, serta yang menyumbang jumlah pemakaian tertinggi.
 """)
+
