@@ -71,7 +71,7 @@ six==1.16.0
 smmap==5.0.1
 soupsiev==2.6
 stack-data==0.6.3
-streamli==1.39.0
+streamlit==1.39.0
 tenacity==9.0.0
 tinycss2==1.3.0
 toml==0.10.2
