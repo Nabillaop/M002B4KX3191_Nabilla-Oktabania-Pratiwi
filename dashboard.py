@@ -184,6 +184,16 @@ elif option == "RFM Analysis":
     plt.suptitle("Pengguna Terbaik Berdasarkan RFM Parameters (instant)", fontsize=20)
     st.pyplot(fig)
 
+    # Insight RFM
+    st.subheader("Insight RFM Analysis")
+    st.write("""
+    Insight:
+    - **Recency**: Pengguna terbaik terakhir berinteraksi sekitar 726-730 hari lalu, semakin lama semakin sedikit.
+    - **Frequency**: Frekuensi interaksi semua pengguna tetap (1 kali).
+    - **Monetary**: Nilai transaksi pengguna berkisar antara 800 hingga 1600, dengan kontribusi terbesar dari pengguna dengan Monetary tertinggi.
+    - **Tabel RFM**: Pengguna dengan nilai Monetary tinggi cenderung memiliki Recency yang lebih kecil (lebih baru).
+    """)
+
 # Kesimpulan
 st.markdown("""
 ## Kesimpulan:
