@@ -21,7 +21,7 @@ data_hari['dteday'] = pd.to_datetime(data_hari['dteday'])  # Convert 'dteday' to
 st.sidebar.header("Filter Data")
 option = st.sidebar.selectbox(
     "Pilih Analisis:",
-    ("Data Summary", "Working Day vs Holiday", "Cuaca dan Penggunaan Sepeda", "Musim dan Penggunaan Sepeda", "Tren Penggunaan Sepeda dari Waktu ke Waktu")
+    ("Data Summary", "Working Day vs Holiday", "Cuaca dan Penggunaan Sepeda", "Musim dan Penggunaan Sepeda", "Tren Penggunaan Sepeda dari Waktu ke Waktu", "RFM Analysis")
 )
 
 # Data Summary  (Statistika deskriptif)
